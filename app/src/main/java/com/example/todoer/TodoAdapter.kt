@@ -1,9 +1,12 @@
 package com.example.todoer
 
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_todo.view.*
 
 class TodoAdapter (private val todos: MutableList<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
@@ -20,7 +23,11 @@ class TodoAdapter (private val todos: MutableList<Todo>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-
+        val curTodo = todos[position]
+        holder.itemView.apply {
+            tvTodoTitle.text = curTodo.title
+            cbDone.isChecked = curTodo.isChecked
+        }
     }
 
     override fun getItemCount(): Int {
